@@ -5,6 +5,8 @@ module Morse_Transceiver_Top(
     output wire [6:0] SEG,    // 7-Segment segment lines a~g (Active Low, 공통 사용)
     output wire       SEG_DP, // 7-Segment decimal point (h) - 여기서는 항상 OFF
     output wire [7:0] SEG_EN, // 8 Digit 공통 단자 (Active Low: 선택 자리만 0)
+    output wire [6:0] SEG_SINGLE, // Single 7-Segment display a~g (for current char browsing)
+    output wire       SEG_SINGLE_DP, // Single 7-Segment decimal point h
     output wire [0:0] LEDG,   // TX Output LED
     output wire oBuzzer       // Piezo Buzzer Output
 );
@@ -16,7 +18,7 @@ module Morse_Transceiver_Top(
     
     // TX Signals
     wire [4:0] tx_current_char_idx; // Currently selected char index
-    wire [34:0] tx_display_data;    // Data to show on HEX (7 chars buffer)
+    wire [39:0] tx_display_data;    // Data to show on HEX (8 chars buffer)
     wire tx_led_out;
     
     // RX Signals
@@ -65,12 +67,12 @@ module Morse_Transceiver_Top(
 
     // 7-Segment Output Logic (8 Digit Array, Scanning 방식)
     // RX mode: rx_display_data[39:0] 전체 8글자 사용
-    // TX mode: tx_display_data[34:0] 7글자 + 현재 선택 문자(tx_current_char_idx)를 8번째 자리로 사용
+    // TX mode: tx_display_data[39:0] 전체 8글자 사용
     wire [4:0] char0, char1, char2, char3, char4, char5, char6, char7;
-    wire [34:0] buffer_data;
+    wire [39:0] buffer_data;
 
-    // 공통 7자리(0~6)는 기존과 동일하게 buffer_data로부터 선택
-    assign buffer_data = (is_tx_mode) ? tx_display_data : rx_display_data[34:0];
+    // 공통 8자리(0~7)는 buffer_data로부터 선택
+    assign buffer_data = (is_tx_mode) ? tx_display_data : rx_display_data[39:0];
 
     assign char0 = buffer_data[4:0];
     assign char1 = buffer_data[9:5];
@@ -79,10 +81,7 @@ module Morse_Transceiver_Top(
     assign char4 = buffer_data[24:20];
     assign char5 = buffer_data[29:25];
     assign char6 = buffer_data[34:30];
-
-    // 8번째 자리(7번 자리)는 모드에 따라 다르게 표시
-    // TX 모드: 현재 선택 문자 / RX 모드: 수신 버퍼의 최상위 글자
-    assign char7 = (is_tx_mode) ? tx_current_char_idx : rx_display_data[39:35];
+    assign char7 = buffer_data[39:35];
 
     // 8 Digit 7-Segment Array 드라이버
     SevenSeg_Array_Driver seg_array_inst (
@@ -102,5 +101,15 @@ module Morse_Transceiver_Top(
 
     // 소수점은 사용하지 않으므로 항상 OFF (Active Low 기준 1)
     assign SEG_DP = 1'b1;
+
+    // Single 7-Segment Display: TX 모드에서 현재 선택 중인 문자 표시
+    // 표준 7-Segment 구성: a, b, c, d, e, f, g (데이터), h (소수점)
+    wire [6:0] single_seg_out;
+    Seven_Seg_Decoder single_seg_dec (
+        .iData(tx_current_char_idx),
+        .oSeg(single_seg_out)
+    );
+    assign SEG_SINGLE = (is_tx_mode) ? single_seg_out : 7'b1111111; // TX 모드일 때만 표시 (a~g)
+    assign SEG_SINGLE_DP = 1'b1; // 소수점(h)은 사용하지 않으므로 항상 OFF (Active Low 기준 1)
 
 endmodule

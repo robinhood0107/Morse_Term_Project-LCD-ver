@@ -5,7 +5,7 @@ module TX_Module(
     input wire [4:0] iKEY, // KEY[1]: Next, KEY[2]: Save, KEY[0]: Reset A, KEY[3]: Send, KEY[4]: Clear Buffer(#)
     input wire [3:0] iHalfSec,
     output reg [4:0] oCurrentChar, // Index for browsing (0-25)
-    output reg [34:0] oDisplayData, // Stored chars (7 chars buffer)
+    output reg [39:0] oDisplayData, // Stored chars (8 chars buffer)
     output wire oLED
 );
     reg [139:0] tx_buffer; // Bit stream buffer for transmission (LSB-first)
@@ -37,7 +37,7 @@ module TX_Module(
     always @(posedge iCLK or posedge iRST) begin
         if (iRST) begin
             oCurrentChar    <= 0;
-            oDisplayData    <= {5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31}; // Empty (7 chars)
+            oDisplayData    <= {5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31}; // Empty (8 chars)
             tx_buffer       <= 0;
             tx_idx          <= 0;
             tx_len          <= 0;
@@ -59,7 +59,7 @@ module TX_Module(
                 // 2. Save Logic
                 else if (key_prev[2] && !iKEY[2]) begin // KEY2: Save
                     // 2-1. 문자 버퍼에 저장 (7-Seg용)
-                    oDisplayData <= {oDisplayData[29:0], oCurrentChar}; // Shift in (7 chars buffer)
+                    oDisplayData <= {oDisplayData[34:0], oCurrentChar}; // Shift in (8 chars buffer)
 
                     // 2-2. Morse 인코딩 → Dot/Dash 심볼 패턴 생성 후,
                     //      실제 시간 패턴(Dot=1, Dash=111, intra-symbol=0, inter-char=000)으로 확장
@@ -161,7 +161,7 @@ module TX_Module(
                 end
                 // 4. Buffer Clear (#): 과거 버퍼 전체 삭제 (현재 선택 문자는 그대로)
                 else if (key_prev[4] && !iKEY[4]) begin // KEY4: Clear Buffer (#)
-                    oDisplayData <= {5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31};
+                    oDisplayData <= {5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31};
                     tx_buffer    <= 0;
                     tx_len       <= 0;
                 end
