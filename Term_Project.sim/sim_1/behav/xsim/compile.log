@@ -1,0 +1,15 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/pjjpj/source/repos/Morse_Term_Project/Clock_Divider.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Clock_Divider
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/pjjpj/source/repos/Morse_Term_Project/Morse_Transceiver_Top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Morse_Transceiver_Top
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/pjjpj/source/repos/Morse_Term_Project/RX_Module.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RX_Module
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/pjjpj/source/repos/Morse_Term_Project/SevenSeg_Array_Driver.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SevenSeg_Array_Driver
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/pjjpj/source/repos/Morse_Term_Project/Seven_Seg_Decoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Seven_Seg_Decoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/pjjpj/source/repos/Morse_Term_Project/TX_Module.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TX_Module
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/pjjpj/source/repos/Morse_Term_Project/testbench-tb_morse.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Seven_Seg_Viewer
+INFO: [VRFC 10-311] analyzing module tb_morse

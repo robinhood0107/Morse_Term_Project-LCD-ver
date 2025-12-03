@@ -1,0 +1,12 @@
+0.7
+2020.1
+May 27 2020
+20:09:33
+C:/Users/pjjpj/source/repos/Morse_Term_Project/Clock_Divider.v,1764237740,verilog,,C:/Users/pjjpj/source/repos/Morse_Term_Project/Morse_Transceiver_Top.v,,Clock_Divider,,,,,,,,
+C:/Users/pjjpj/source/repos/Morse_Term_Project/Morse_Transceiver_Top.v,1764771898,verilog,,C:/Users/pjjpj/source/repos/Morse_Term_Project/RX_Module.v,,Morse_Transceiver_Top,,,,,,,,
+C:/Users/pjjpj/source/repos/Morse_Term_Project/RX_Module.v,1764709713,verilog,,C:/Users/pjjpj/source/repos/Morse_Term_Project/SevenSeg_Array_Driver.v,,RX_Module,,,,,,,,
+C:/Users/pjjpj/source/repos/Morse_Term_Project/SevenSeg_Array_Driver.v,1764771898,verilog,,C:/Users/pjjpj/source/repos/Morse_Term_Project/Seven_Seg_Decoder.v,,SevenSeg_Array_Driver,,,,,,,,
+C:/Users/pjjpj/source/repos/Morse_Term_Project/Seven_Seg_Decoder.v,1764237740,verilog,,C:/Users/pjjpj/source/repos/Morse_Term_Project/TX_Module.v,,Seven_Seg_Decoder,,,,,,,,
+C:/Users/pjjpj/source/repos/Morse_Term_Project/TX_Module.v,1764773659,verilog,,C:/Users/pjjpj/source/repos/Morse_Term_Project/testbench-tb_morse.v,,TX_Module,,,,,,,,
+C:/Users/pjjpj/source/repos/Morse_Term_Project/Term_Project.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
+C:/Users/pjjpj/source/repos/Morse_Term_Project/testbench-tb_morse.v,1764776280,verilog,,,,Seven_Seg_Viewer;tb_morse,,,,,,,,

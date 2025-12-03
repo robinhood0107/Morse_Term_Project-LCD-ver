@@ -1,0 +1,32 @@
+Vivado Simulator 2020.1
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.1/bin/unwrapped/win64.o/xelab.exe -wto 54f35989d83148ae980276b4a0108f8f --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_morse_behav xil_defaultlib.tb_morse xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/Morse_Transceiver_Top.v" Line 1. Module Morse_Transceiver_Top doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/Clock_Divider.v" Line 1. Module Clock_Divider doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/TX_Module.v" Line 1. Module TX_Module doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/RX_Module.v" Line 1. Module RX_Module doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/SevenSeg_Array_Driver.v" Line 1. Module SevenSeg_Array_Driver doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/Seven_Seg_Decoder.v" Line 1. Module Seven_Seg_Decoder doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/Morse_Transceiver_Top.v" Line 1. Module Morse_Transceiver_Top doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/Clock_Divider.v" Line 1. Module Clock_Divider doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/TX_Module.v" Line 1. Module TX_Module doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/RX_Module.v" Line 1. Module RX_Module doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/SevenSeg_Array_Driver.v" Line 1. Module SevenSeg_Array_Driver doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/pjjpj/source/repos/Morse_Term_Project/Seven_Seg_Decoder.v" Line 1. Module Seven_Seg_Decoder doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Clock_Divider
+Compiling module xil_defaultlib.TX_Module
+Compiling module xil_defaultlib.RX_Module
+Compiling module xil_defaultlib.Seven_Seg_Decoder
+Compiling module xil_defaultlib.SevenSeg_Array_Driver
+Compiling module xil_defaultlib.Morse_Transceiver_Top
+Compiling module xil_defaultlib.Seven_Seg_Viewer
+Compiling module xil_defaultlib.tb_morse
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_morse_behav

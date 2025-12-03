@@ -1,0 +1,280 @@
+
+*** Running vivado
+    with args -log Morse_Transceiver_Top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Morse_Transceiver_Top.tcl
+
+
+
+****** Vivado v2020.1 (64-bit)
+  **** SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+  **** IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source Morse_Transceiver_Top.tcl -notrace
+Command: synth_design -top Morse_Transceiver_Top -part xc7s75fgga484-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7s75'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s75'
+INFO: [Device 21-403] Loading part xc7s75fgga484-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 45160
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1029.016 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Morse_Transceiver_Top' [C:/Users/pjjpj/source/repos/Morse_Term_Project/Morse_Transceiver_Top.v:1]
+INFO: [Synth 8-6157] synthesizing module 'Clock_Divider' [C:/Users/pjjpj/source/repos/Morse_Term_Project/Clock_Divider.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'Clock_Divider' (1#1) [C:/Users/pjjpj/source/repos/Morse_Term_Project/Clock_Divider.v:1]
+INFO: [Synth 8-6157] synthesizing module 'TX_Module' [C:/Users/pjjpj/source/repos/Morse_Term_Project/TX_Module.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'TX_Module' (2#1) [C:/Users/pjjpj/source/repos/Morse_Term_Project/TX_Module.v:1]
+INFO: [Synth 8-6157] synthesizing module 'RX_Module' [C:/Users/pjjpj/source/repos/Morse_Term_Project/RX_Module.v:1]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/pjjpj/source/repos/Morse_Term_Project/RX_Module.v:76]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/pjjpj/source/repos/Morse_Term_Project/RX_Module.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'RX_Module' (3#1) [C:/Users/pjjpj/source/repos/Morse_Term_Project/RX_Module.v:1]
+INFO: [Synth 8-6157] synthesizing module 'SevenSeg_Array_Driver' [C:/Users/pjjpj/source/repos/Morse_Term_Project/SevenSeg_Array_Driver.v:1]
+INFO: [Synth 8-226] default block is never used [C:/Users/pjjpj/source/repos/Morse_Term_Project/SevenSeg_Array_Driver.v:37]
+INFO: [Synth 8-6157] synthesizing module 'Seven_Seg_Decoder' [C:/Users/pjjpj/source/repos/Morse_Term_Project/Seven_Seg_Decoder.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'Seven_Seg_Decoder' (4#1) [C:/Users/pjjpj/source/repos/Morse_Term_Project/Seven_Seg_Decoder.v:1]
+INFO: [Synth 8-226] default block is never used [C:/Users/pjjpj/source/repos/Morse_Term_Project/SevenSeg_Array_Driver.v:59]
+INFO: [Synth 8-6155] done synthesizing module 'SevenSeg_Array_Driver' (5#1) [C:/Users/pjjpj/source/repos/Morse_Term_Project/SevenSeg_Array_Driver.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'Morse_Transceiver_Top' (6#1) [C:/Users/pjjpj/source/repos/Morse_Term_Project/Morse_Transceiver_Top.v:1]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1029.016 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1029.016 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1029.016 ; gain = 0.000
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1029.016 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/pjjpj/source/repos/Morse_Term_Project/Term_Project.srcs/constrs_1/new/test1203.xdc]
+Finished Parsing XDC File [C:/Users/pjjpj/source/repos/Morse_Term_Project/Term_Project.srcs/constrs_1/new/test1203.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/pjjpj/source/repos/Morse_Term_Project/Term_Project.srcs/constrs_1/new/test1203.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Morse_Transceiver_Top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Morse_Transceiver_Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1037.395 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1037.395 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1037.395 ; gain = 8.379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7s75fgga484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1037.395 ; gain = 8.379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1037.395 ; gain = 8.379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1037.395 ; gain = 8.379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 1     
+	   2 Input   16 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 2     
+	   2 Input    7 Bit       Adders := 4     
+	   2 Input    6 Bit       Adders := 5     
+	   4 Input    6 Bit       Adders := 1     
+	   3 Input    6 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 6     
+	   2 Input    3 Bit       Adders := 3     
++---Registers : 
+	              140 Bit    Registers := 1     
+	               40 Bit    Registers := 1     
+	               35 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                5 Bit    Registers := 3     
+	                4 Bit    Registers := 4     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input  140 Bit        Muxes := 1     
+	   2 Input   35 Bit        Muxes := 2     
+	   2 Input   32 Bit        Muxes := 10    
+	   2 Input    8 Bit        Muxes := 3     
+	   8 Input    8 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 2     
+	   2 Input    5 Bit        Muxes := 5     
+	   8 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 3     
+	   4 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 13    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 140 (col length:80)
+BRAMs: 180 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping	Report
++----------------------+---------------------------+---------------+----------------+
+|Module Name           | RTL Object                | Depth x Width | Implemented As | 
++----------------------+---------------------------+---------------+----------------+
+|TX_Module             | sym_len                   | 32x3          | LUT            | 
+|TX_Module             | sym_bits                  | 32x4          | LUT            | 
+|Seven_Seg_Decoder     | oSeg                      | 32x7          | LUT            | 
+|TX_Module             | sym_len                   | 32x3          | LUT            | 
+|TX_Module             | sym_bits                  | 32x4          | LUT            | 
+|Morse_Transceiver_Top | seg_array_inst/u_dec/oSeg | 32x7          | LUT            | 
++----------------------+---------------------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |    19|
+|3     |LUT1   |     2|
+|4     |LUT2   |    31|
+|5     |LUT3   |    66|
+|6     |LUT4   |    83|
+|7     |LUT5   |   145|
+|8     |LUT6   |   251|
+|9     |MUXF7  |    17|
+|10    |MUXF8  |     5|
+|11    |FDCE   |   222|
+|12    |FDPE   |    83|
+|13    |IBUF   |     8|
+|14    |OBUF   |    18|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1094.883 ; gain = 65.867
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:21 . Memory (MB): peak = 1094.883 ; gain = 57.488
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1094.883 ; gain = 65.867
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1094.883 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 41 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1094.883 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+31 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1094.883 ; gain = 65.867
+INFO: [Common 17-1381] The checkpoint 'C:/Users/pjjpj/source/repos/Morse_Term_Project/Term_Project.runs/synth_1/Morse_Transceiver_Top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Morse_Transceiver_Top_utilization_synth.rpt -pb Morse_Transceiver_Top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Dec  3 23:55:52 2025...
