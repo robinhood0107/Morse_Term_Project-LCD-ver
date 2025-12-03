@@ -16,7 +16,7 @@ module Clock_Divider(
             sec_reg <= 0;
             half_sec_reg <= 0;
         end else begin
-            if (cnt >= 24_999_999) begin // 0.5 second
+            if (cnt == 24_999_999) begin // 0.5 second (25,000,000 cycles total: 0 to 24,999,999)
                 cnt <= 0;
                 half_sec_reg <= half_sec_reg + 1;
                 if (half_sec_reg[0] == 1'b1) begin // Every 2 half-secs = 1 sec

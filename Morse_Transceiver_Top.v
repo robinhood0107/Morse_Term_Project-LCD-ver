@@ -2,11 +2,15 @@ module Morse_Transceiver_Top(
     input wire iCLK,          // 50MHz Clock
     input wire [4:0] KEY,     // Push Buttons (Active Low usually) - KEY[4]: TX Buffer Clear(#)
     input wire [17:0] SW,     // DIP Switches
-    output wire [6:0] SEG,    // 7-Segment segment lines a~g (Active Low, 공통 사용)
+    output wire [6:0] SEG,    // 7-Segment segment lines a~g (TX mode only)
     output wire       SEG_DP, // 7-Segment decimal point (h) - 여기서는 항상 OFF
-    output wire [7:0] SEG_EN, // 8 Digit 공통 단자 (Active Low: 선택 자리만 0)
+    output wire [7:0] SEG_EN, // 8 Digit 공통 단자 (TX mode only)
     output wire [6:0] SEG_SINGLE, // Single 7-Segment display a~g (for current char browsing)
     output wire       SEG_SINGLE_DP, // Single 7-Segment decimal point h
+    output wire [7:0] TLCD_D,  // Text LCD Data bus (D7~D0) - RX mode only
+    output wire       TLCD_E,  // Text LCD Enable
+    output wire       TLCD_RS, // Text LCD Register Select
+    output wire       TLCD_RW, // Text LCD Read/Write
     output wire [0:0] LEDG,   // TX Output LED
     output wire oBuzzer       // Piezo Buzzer Output
 );
@@ -65,25 +69,20 @@ module Morse_Transceiver_Top(
     assign LEDG[0] = (is_tx_mode) ? tx_led_out : 1'b0;
     assign oBuzzer = (!is_tx_mode) ? rx_buzzer_out : 1'b0;
 
-    // 7-Segment Output Logic (8 Digit Array, Scanning 방식)
-    // RX mode: rx_display_data[39:0] 전체 8글자 사용
+    // 7-Segment Output Logic (TX mode only)
     // TX mode: tx_display_data[39:0] 전체 8글자 사용
     wire [4:0] char0, char1, char2, char3, char4, char5, char6, char7;
-    wire [39:0] buffer_data;
 
-    // 공통 8자리(0~7)는 buffer_data로부터 선택
-    assign buffer_data = (is_tx_mode) ? tx_display_data : rx_display_data[39:0];
+    assign char0 = tx_display_data[4:0];
+    assign char1 = tx_display_data[9:5];
+    assign char2 = tx_display_data[14:10];
+    assign char3 = tx_display_data[19:15];
+    assign char4 = tx_display_data[24:20];
+    assign char5 = tx_display_data[29:25];
+    assign char6 = tx_display_data[34:30];
+    assign char7 = tx_display_data[39:35];
 
-    assign char0 = buffer_data[4:0];
-    assign char1 = buffer_data[9:5];
-    assign char2 = buffer_data[14:10];
-    assign char3 = buffer_data[19:15];
-    assign char4 = buffer_data[24:20];
-    assign char5 = buffer_data[29:25];
-    assign char6 = buffer_data[34:30];
-    assign char7 = buffer_data[39:35];
-
-    // 8 Digit 7-Segment Array 드라이버
+    // 8 Digit 7-Segment Array 드라이버 (TX mode only)
     SevenSeg_Array_Driver seg_array_inst (
         .iCLK(iCLK),
         .iRST(rst),
@@ -99,7 +98,26 @@ module Morse_Transceiver_Top(
         .oDIGIT(SEG_EN)
     );
 
-    // 소수점은 사용하지 않으므로 항상 OFF (Active Low 기준 1)
+    // Text LCD Driver
+    // Note: LCD 드라이버는 항상 동작하지만, iCharData는 rx_display_data로 연결되어 있음
+    // RX 모드일 때만 rx_display_data가 업데이트되므로, TX 모드에서는 마지막 RX 데이터가 표시됨
+    // 이는 의도된 동작이며, 모드 전환 시 LCD가 즉시 업데이트되지 않을 수 있음
+    Text_LCD_Driver lcd_driver_inst (
+        .iCLK(iCLK),
+        .iRST(rst),
+        .iCharData(rx_display_data),
+        .oLCD_D(TLCD_D),
+        .oLCD_E(TLCD_E),
+        .oLCD_RS(TLCD_RS),
+        .oLCD_RW(TLCD_RW)
+    );
+
+    // 소수점은 사용하지 않으므로 항상 OFF
+    // 주의: 실제 하드웨어에 따라 Active Low 또는 Active High일 수 있습니다.
+    // - Active Low인 경우: 1 = OFF, 0 = ON
+    // - Active High인 경우: 0 = OFF, 1 = ON
+    // 일반적으로 DE2-115 보드의 7-segment는 Active Low이므로 1로 설정
+    // 만약 소수점이 켜진다면 이 값을 0으로 변경하세요
     assign SEG_DP = 1'b1;
 
     // Single 7-Segment Display: TX 모드에서 현재 선택 중인 문자 표시
@@ -109,7 +127,11 @@ module Morse_Transceiver_Top(
         .iData(tx_current_char_idx),
         .oSeg(single_seg_out)
     );
-    assign SEG_SINGLE = (is_tx_mode) ? single_seg_out : 7'b1111111; // TX 모드일 때만 표시 (a~g)
-    assign SEG_SINGLE_DP = 1'b1; // 소수점(h)은 사용하지 않으므로 항상 OFF (Active Low 기준 1)
+    // TX 모드일 때만 현재 문자 표시, RX 모드에서는 모든 세그먼트 OFF (Active High 기준 0)
+    assign SEG_SINGLE = (is_tx_mode) ? single_seg_out : 7'b0000000;
+    // 소수점(h)은 사용하지 않으므로 항상 OFF
+    // 주의: 실제 하드웨어에 따라 Active Low 또는 Active High일 수 있습니다.
+    // 일반적으로 DE2-115 보드의 7-segment는 Active Low이므로 1로 설정
+    assign SEG_SINGLE_DP = 1'b1;
 
 endmodule

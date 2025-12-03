@@ -31,20 +31,30 @@ module RX_Module(
             // Key edge detection (Active Low)
             // KEY[1] (Dash/Long, '1') Falling Edge
             if (key_prev[1] && !iKEY[1]) begin
-                stack <= {stack[2:0], 1'b1}; // Shift in 1 (Dash)
-                count <= count + 1;
+                // 모스 코드는 최대 4개 심볼만 있으므로 count 제한
+                if (count < 4) begin
+                    stack <= {stack[2:0], 1'b1}; // Shift in 1 (Dash)
+                    count <= count + 1;
+                end
             end
             // KEY[2] (Dot/Short, '0') Falling Edge
             else if (key_prev[2] && !iKEY[2]) begin
-                stack <= {stack[2:0], 1'b0}; // Shift in 0 (Dot)
-                count <= count + 1;
+                // 모스 코드는 최대 4개 심볼만 있으므로 count 제한
+                if (count < 4) begin
+                    stack <= {stack[2:0], 1'b0}; // Shift in 0 (Dot)
+                    count <= count + 1;
+                end
             end
             // KEY[3] (Confirm/Next) Falling Edge
             else if (key_prev[3] && !iKEY[3]) begin
                 // Decode Logic (Full Morse Tree Implementation)
                 // A=0, B=1, ..., Z=25
+                // Note: decoded는 combinational logic이지만, 같은 클럭 사이클 내에서
+                // shift_reg에 사용되므로 blocking assignment를 사용합니다.
+                // count가 0이면 입력이 없으므로 Space(31)로 처리
                 decoded = 5'd31; // Default Space/Error
 
+                if (count > 0 && count <= 4) begin
                 case (count)
                     // Length 1
                     1: case(stack[0])
@@ -90,8 +100,11 @@ module RX_Module(
                         4'b1101: decoded = 5'd16; // Q (--.-)
                        endcase
                 endcase
+                end
+                // count가 0이거나 4를 초과하면 decoded는 기본값 5'd31 (Space) 유지
                 
                 // Shift into display buffer (Shift Left)
+                // decoded는 같은 클럭 사이클 내에서 계산되므로 blocking assignment 사용이 맞습니다.
                 shift_reg <= {shift_reg[34:0], decoded};
                 
                 // Reset for next char

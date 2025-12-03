@@ -45,8 +45,9 @@ module TX_Module(
             key_prev        <= 5'b11111;
             prev_half_sec   <= 4'd0;
         end else begin
-            // 1) 키 입력/버퍼 관련 로직은 iEnable 이 켜져 있을 때만 동작
-            if (iEnable) begin
+            // 1) 키 입력/버퍼 관련 로직은 iEnable 이 켜져 있고 송신 중이 아닐 때만 동작
+            //    송신 중에는 버퍼를 변경하면 안 되므로 모든 키 입력 무시
+            if (iEnable && !is_transmitting) begin
                 // 1. Character Selection Logic (Browsing)
                 if (key_prev[1] && !iKEY[1]) begin // KEY1: Next Char
                     if (oCurrentChar == 25) oCurrentChar <= 0;
@@ -164,8 +165,14 @@ module TX_Module(
                     oDisplayData <= {5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31, 5'd31};
                     tx_buffer    <= 0;
                     tx_len       <= 0;
+                    // 송신 중이었다면 송신도 중단
+                    is_transmitting <= 0;
+                    tx_idx          <= 0;
                 end
 
+                key_prev <= iKEY;
+            end else if (iEnable) begin
+                // 송신 중일 때는 키 입력을 무시하지만, key_prev는 업데이트해야 함
                 key_prev <= iKEY;
             end
 

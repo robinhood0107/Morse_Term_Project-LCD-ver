@@ -9,8 +9,8 @@ module SevenSeg_Array_Driver(
     input  wire [4:0] char5,
     input  wire [4:0] char6,
     input  wire [4:0] char7,
-    output wire [6:0] oSEG,      // a~g (Active Low) -> 공통 세그먼트 라인
-    output reg  [7:0] oDIGIT     // 각 자리 Common 단자 (Active Low 가정)
+    output wire [6:0] oSEG,      // a~g (Active High from Seven_Seg_Decoder) -> 공통 세그먼트 라인
+    output reg  [7:0] oDIGIT     // 각 자리 Common 단자 (Active Low: 선택된 자리만 0)
 );
 
     // 자리 스캔용 분주기 (시뮬/실측에서 필요에 따라 조정 가능)
@@ -47,7 +47,8 @@ module SevenSeg_Array_Driver(
         endcase
     end
 
-    // 기존 1글자용 디코더 재사용 (Active Low 7-Seg)
+    // 기존 1글자용 디코더 재사용
+    // Seven_Seg_Decoder는 Active High 출력 (1=ON, 0=OFF for common cathode)
     Seven_Seg_Decoder u_dec (
         .iData(cur_char),
         .oSeg(oSEG)
